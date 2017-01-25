@@ -1,0 +1,259 @@
+$background: #EDEDED;
+$line: #030303;
+
+@import "bits";
+
+body, html {
+  height: 100%;
+  background: $background;
+}
+
+
+.main-header {
+  height: 550px;
+	color: #FFFFFF!important;
+	font-weight: 600;
+  background-size: cover;
+  background-repeat: no-repeat;   
+  transition: all 0.3s ease-in-out;
+
+  @include MQ(S) {
+    height: 700px;
+  }  
+	
+	.header-logotype {
+		margin: 20px auto;
+		width: 800px;
+		height: auto;
+		max-width: 80%;
+	}
+}
+
+.ng-hide-add-active {
+  display: block!important;
+  -webkit-transition: 0.5s linear all;
+  transition: 0.5s linear all;
+}
+
+.ng-hide-remove-active {
+  display: block!important;
+  -webkit-transition: 0.5s linear all;
+  transition: 0.5s linear all;
+  -webkit-transition-delay: 0.5s;
+  transition-delay: 0.5s;
+}
+
+.animate {
+  transition: all 0.2s ease-in-out;
+}
+
+.ng-hide {
+  opacity: 0;
+}
+
+.angle-wrapper {
+  width: 100%;
+  overflow: hidden;
+  height: 300px;
+  top: -200px;
+  position: relative;
+  
+  .angle-rotate {
+    transform: rotate(-4deg);
+    height: 300px; 
+    top: 100px;
+    position: relative;
+    left: -5px;
+    background: $background;
+    width: 110%;
+    
+    &.footer {
+      top: 150px;
+    }
+  }
+}
+
+.news {
+  
+  p {
+    text-align: left;
+  }
+}
+
+.line-up {
+  width: 350px;
+  
+  .line {
+    background: $line;
+    width: 2px;
+    height: 80px;
+    position: relative;
+  }
+  
+  img {
+    width: 300px;
+    margin: 5px auto;
+    position: relative;
+  }
+}
+
+.toolbar {
+  position: fixed;
+  top: 0; left:
+  0;
+  z-index: 3;
+  background: rgba(#09090A, 0.5)!important;
+}
+
+
+
+.background-color {
+  background: $background;
+}
+
+.tickets-for-sale {
+  background: #6698C8;
+  color: white;
+}
+
+footer {
+  background: #09090A;
+  padding: 20px 0; 
+  color: white!important;
+  
+  .container {
+    width: 700px!important;
+  }
+}
+
+
+.container {
+  width: 1024px;
+  max-width: 95%;
+  margin: 0 auto;
+  text-align: center;
+  
+}
+
+.artist {
+  position: absolute; 
+  bottom: 40px;
+  margin: 0 auto;
+  z-index: 1;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+.view {
+	position: relative;
+	margin-top: -350px;
+  padding: 30px 0 0 0;
+}
+
+.md-button {
+  //margin-left: 0px!important;
+  //margin: 0 auto;
+
+  &.button-wide {
+    width: 100%!important;
+  }
+
+  &.no-transform {
+    text-transform: none;
+  }
+  
+  &.border-button {
+	  border-radius: 50px!important;
+	  padding: 3px 40px;
+	  border: 2px solid #AAA!important;
+    
+    &.white-border {
+      border: 2px solid #FFFFFF!important;
+    }
+    
+    &.blue {
+      background: darken(#F34270, 20);
+      border: 2px solid darken(#F34270, 25)!important;
+      
+      &:hover {
+        background: darken(#F34270, 30);
+      }
+    }
+  }
+
+  &.no-backdrop { box-shadow: none!important; }
+}
+
+.wide { width: 100%; }
+
+.faded { opacity: 0.4; }
+
+.red { color: #FF0000; }
+
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(/libs/material-design-icons/iconfont/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: local('Material Icons'),
+  local('MaterialIcons-Regular'),
+  url(/libs/material-design-icons/iconfont/MaterialIcons-Regular.woff2) format('woff2'),
+  url(/libs/material-design-icons/iconfont/MaterialIcons-Regular.woff) format('woff'),
+  url(/libs/material-design-icons/iconfont/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  width: 1em;
+  display: inline-block;
+  height: 1em;
+  line-height: 24px;
+  position: relative;
+  top: 0px;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  &.padded {
+    padding: 9px 0 12px 0;
+    display: block;
+    margin: 0 auto;
+    top: 0;
+    line-height: 20px;
+  }
+
+  &.nav-toggle {
+    padding: 12px 0;
+  }
+
+  &.small {
+    font-size: 18px;
+    line-height: 18px;
+    top: 3px;
+  }
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}

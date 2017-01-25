@@ -1,0 +1,47 @@
+<md-content layout="column" layout-align="center center" style="padding: 0 0 60px 0;" class="background-color">
+    
+    <div class="container" layout="row" layout-align="start center" layout-margin layout-padding ng-show="vm.news.length > 0">
+        <h3 class="md-title"><span class="material-icons" style="top: 3px;">new_releases</span><span layout-margin>Nyheter</span></h3>
+    </div>
+    <md-content ng-init="limit = 200" ng-repeat="article in vm.news" style="margin: 10px auto;" class="container animate news" layout-padding layout="column" layout-align="start start">
+        <p class="md-body-2">{{ article.text | strLimit: limit }}</p>
+        <div layout="row" class="wide" layout-align="center center">
+            <span class="md-caption faded">{{ article.date | limitTo: 16}} | av <strong>Metal Park</strong></span>
+            <span flex></span>
+            <md-button href="" ng-click="limit = 9999999" ng-show="global.dummyText.length > limit">Läs mer</md-button>
+        </div>
+    </md-content>
+    
+
+        
+        <p style="margin: 80px 0 20px 0;" class="md-title"><strong>VÅR GRYMMA LINEUP</strong></p>
+        <div layout="row" layout-wrap layout-align="center center" class="container">
+            <md-content style="position: relative;" flex-gt-md="45" flex="90" layout-margin layout-align="center center" layout="row">
+                <img src="/src/client/images/bands/lillasyster_small.jpg" alt="Mustasch">
+                <p class="md-display-1 artist">Lillasyster</p>
+            </md-content>
+            <md-content style="position: relative;" flex-gt-md="45" flex="90" layout-margin layout-align="center center" layout="row">
+                <img src="/src/client/images/bands/unknown_2.jpg" alt="????">
+            </md-content>
+            <md-content style="position: relative;" flex-gt-md="45" flex="90" layout-margin layout-align="center center" layout="row">
+                <img src="/src/client/images/bands/unknown_1.jpg" alt="????">
+            </md-content>
+            <md-content style="position: relative;" flex-gt-md="45" flex="90" layout-margin layout-align="center center" layout="row">
+                <img src="/src/client/images/bands/unknown_2.jpg" alt="????">
+            </md-content>
+        </div>
+        
+        
+       
+        
+        
+        
+    </div>
+</md-content>
+
+<md-content class="md-whiteframe-z1 tickets-for-sale" layout-padding layout-align="center center" layout="column" layout-gt-sm="row">
+    <h3 class="md-title">Vi ses den 27e augusti!</h3>
+    <md-button class="border-button md-caption white-border"
+        aria-label="Boka biljetter"
+        ng-href="/biljetter">Biljetter släpps inom kort</md-button>
+</md-content>

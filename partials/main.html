@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="sv" ng-app="app" ng-strict-di>
+<head>
+    <meta charset="UTF-8">
+    <title>MetalPark</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:title" content="Metal Park - sommarens tyngsta konsert">
+    <meta property="og:type" content="">
+    <meta propert="og:url" content="http://www.metalpark.se">
+    <meta property="og:image" content="/src/client/images/logotype.png">
+    <meta property="og:site_name" content="Metal park – Sommarens bästa konsert">
+    <meta property="og:description" content="Missa inte sommarens bästa konsert på Idrottsparken i Edsbyn – Metal park!">
+
+
+
+    <!--build:css /styles/lib.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="/bower_components/angular-material/angular-material.min.css">
+    <!-- endbower -->
+
+    <!--build:css /styles/apps.css -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/.tmp/site.css">
+    <!-- endinject -->
+    <!-- endbuild -->
+    <base href="/">
+</head>
+<body ng-controller="Global as global">
+
+<!-- Sidebar, includes the template -->
+<md-sidenav class="md-whiteframe-z5 sidebar" hide-gt-md
+            layout-padding md-component-id="main-menu" md-is-locked-open="$mdMedia('gt-md')"
+            layout="column" layout-align="start center"
+            ng-include="'/partials/parts/sidebar.html'"
+            style="z-index: 99999; position: fixed; overflow: auto;">
+</md-sidenav>
+
+<md-toolbar hide-gt-sm layout="row" class="toolbar" layout-align="start center">
+    <md-button ng-click="global.toggleSidebar();">
+        <i class="material-icons small">menu</i>
+        MENY
+    </md-button>
+</md-toolbar>
+
+
+<header class="main-header" layout="column" layout-align="start center"
+        ng-style="global.background">
+    <nav style="margin-top: 20px;" show-gt-sm hide layout="row" layout-align="center center">
+        <div class="fb-like" data-href="https://www.facebook.com/MetalParkEdsbyn/?fref=ts" data-width="90" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+        <md-button aria-label="Hem" ng-href="/"><strong>HEM</strong></md-button>
+        <md-button aria-label="Biljetter" ng-href="/biljetter"><strong>BILJETTER</strong></md-button>
+        <md-button aria-label="Lineup" ng-href="/boende"><strong>BOENDE</strong></md-button>
+    </nav>
+    <span hide-gt-sm layout-margin style="margin: 20px auto;"></span>
+    <p class="white" style="margin-top: 50px;">IDROTTSPARKEN PRESENTERAR</p>
+    <img src="/src/client/images/logotype.png" class="header-logotype" alt="Metal park">
+    <p class="white">27 Augusti 2016</p>
+    <md-button class="border-button md-caption blue"
+               aria-label="Boka biljetter"
+               ng-href="https://secure.tickster.com/Intro.aspx?ERC=UG2X5HEK768XKDM">Köp biljett nu</md-button>
+</header>
+
+<div class="angle-wrapper">
+    <div class="angle-rotate"></div>
+</div>
+
+
+<div ng-view class="view"></div>
+
+<footer layout="column" layout-align="center center" layout-padding>
+    <div class="container footer" layout="row" layout-wrap>
+        <div flex="100" flex-gt-xs="50" layout="column" layout-align="center center" layout-align-gt-xs="start start">
+            <span><strong layout-margin>Metal Park</strong></span>
+            <span layout-margin>Telnr: 0271-227 25</span>
+            <span><strong layout-margin>Videgatan 9</strong></span>
+            <span layout-margin>Edsbyn</span>
+        </div>
+        <div flex="50" hide-xs layout="column" layout-align="center end">
+            <md-button class="border-button md-caption"
+                       aria-label="Hitta hit"
+                       ng-href="https://www.google.se/maps/place/Videgatan+9,+828+30+Edsbyn/@61.367892,15.8155439,17z/data=!3m1!4b1!4m2!3m1!1s0x4666586aefd7b2f1:0xf7441e85e4252f79">Hitta hit</md-button>
+        </div>
+    </div>
+    <div class="wide faded" layout="row" layout-align="center center"><strong>Bilder av Patric Ullaeus</strong></div>
+</footer>
+
+<!-- build:js /js/lib.js -->
+<!-- bower:js -->
+<script src="/bower_components/angular/angular.min.js"></script>
+<script src="/bower_components/angular-route/angular-route.min.js"></script>
+<script src="/bower_components/angular-material/angular-material.min.js"></script>
+<script src="/bower_components/angular-aria/angular-aria.min.js"></script>
+<script src="/bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="/bower_components/angular-messages/angular-messages.min.js"></script>
+<!-- endbower -->
+
+<!-- build:js /js/app.js -->
+<!-- inject:js -->
+<script src="/src/client/app.module.js"></script>
+<script src="/src/client/app.route.js"></script>
+<script src="/src/client/controllers/Global.controller.js"></script>
+<script src="/src/client/factory/news.data.js"></script>
+
+<!-- endinject -->
+
+<!-- inject:templates:js -->
+<!-- endinject -->
+<!-- endbuild -->
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/sv_SE/sdk.js#xfbml=1&version=v2.6&appId=1495795740726979";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-39964500-6', 'auto');
+    ga('send', 'pageview');
+
+</script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+/*jslint node: true */
+
+var gulp = require('gulp');
+var imagemin = require('gulp-imagemin');
+const del = require('del');
+var templateCache = require('gulp-angular-templatecache');
+var minifyHtml = require('gulp-minify-html');
+var plumber = require('gulp-plumber');
+var inject = require('gulp-inject');
+var useref = require('gulp-useref');
+var filter = require('gulp-filter');
+var csso = require('gulp-csso');
+var uglify = require('gulp-uglify');
+var ngAnnotate = require('gulp-ng-annotate');
+var rev = require('gulp-rev');
+var revReplace = require('gulp-rev-replace');
+var sourcemaps = require('gulp-sourcemaps');
+var lazypipe = require('lazypipe');
+var stripDebug = require('gulp-strip-debug');
+
+var config = require('../config')();
+var util = require('../gulp.utils')();
+
+gulp.task('fonts', ['clean-fonts'], function () {
+    util.log('Copying fonts');
+    return gulp.src(config.fonts)
+        .pipe(gulp.dest(config.build + 'fonts'));
+});
+
+gulp.task('images', ['clean-images'], function () {
+    util.log('Copying images');
+    return gulp.src(config.images)
+        .pipe(imagemin({
+            optimizationlevel: 4,
+            progressive: true
+        }))
+        .pipe(gulp.dest(config.build + 'images'));
+});
+
+gulp.task('clean', function (done) {
+    util.log('Removing distribution folder')
+    var files = [].concat(config.build);
+    return del(files);
+});
+
+gulp.task('clean-fonts', function (done) {
+    var files = config.build + 'fonts/**/*.*';
+    return clean(files);
+});
+
+gulp.task('clean-images', function (done) {
+    var files = config.build + 'images/**/*.*';
+    return clean(files);
+});
+
+gulp.task('clean-code', function (done) {
+    var files = [].concat(
+        config.build + '**/*.html',
+        config.build + 'js/**/*.js'
+    );
+    return clean(files);
+});
+
+gulp.task('templatecache', ['clean-code'], function () {
+    util.log('Creating $templateCache for Angular');
+
+    return gulp
+        .src(config.htmlTemplates)
+        .pipe(minifyHtml({
+            empty: true
+        }))
+        .pipe(templateCache(
+            config.templateCache.file,
+            config.templateCache.options
+        ))
+        .pipe(gulp.dest(config.temp));
+});
+
+gulp.task('copy', [], function() {
+    gulp
+        .src('./libs/**/*')
+        .pipe(gulp.dest('./dist/libs/'));
+    gulp
+        .src('./partials/**/*')
+        .pipe(gulp.dest('./dist/partials/'));
+    gulp
+        .src('./bower_components/**/*')
+        .pipe(gulp.dest('./dist/bower_components/'));
+        
+    gulp
+        .src('./bower_components/**/*')
+        .pipe(gulp.dest('./dist/bower_components/'));
+});
+
+gulp.task('optimize', ['images', 'copy'], function () {
+    util.log('Optimizing js, css, html');
+
+    var templateCache = config.temp + config.templateCache.file;
+    var cssFilter = filter('**/*.css', {restore:true});
+    var jsLibFilter = filter('**/lib.js', {restore:true});
+    var jsAppFilter = filter(['**/app.js', '!**/*.func.js'], {restore:true});
+    var notIndexFilter = filter(['**/*', '!**/*.html'], {restore:true});
+
+    return gulp
+        .src(config.paths.index)
+        .pipe(plumber())
+/*        .pipe(inject(gulp.src(templateCache, {
+            read: false
+        }), {
+            starttag: '<!-- inject:templates:js -->'
+        }))*/
+        .pipe(useref({searchPath: './'}, lazypipe().pipe(sourcemaps.init, {loadMaps: true})))
+        .pipe(cssFilter)
+        .pipe(csso())
+        .pipe(cssFilter.restore)
+        .pipe(jsLibFilter)
+        //.pipe(uglify())
+        .pipe(jsLibFilter.restore)
+        .pipe(jsAppFilter)
+        .pipe(ngAnnotate({gulpWarnings: false}))
+        .pipe(uglify())
+        .pipe(stripDebug())
+        .pipe(jsAppFilter.restore)
+        .pipe(notIndexFilter)
+        .pipe(rev())
+        .pipe(notIndexFilter.restore)
+        .pipe(revReplace())
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest(config.build))
+        .pipe(rev.manifest())
+        .pipe(gulp.dest(config.build));
+});
+
+//////
+
+function clean(files) {
+    return del(files);
+}

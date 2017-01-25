@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="sv" ng-app="admin" ng-strict-di>
+<head>
+    <meta charset="UTF-8">
+    <title>MetalPark</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:title" content="Metal Park - sommarens bästa konsert">
+    <meta property="og:type" content="">
+    <meta propert="og:url" content="http://www.metalpark.se">
+    <meta property="og:image" content="/src/client/images/logotype.png">
+    <meta property="og:site_name" content="Metal park – Sommarens bästa konsert">
+    <meta property="og:description" content="Missa inte sommarens bästa konsert på Idrottsparken i Edsbyn – Metal park!">
+
+    <meta name="robots" content="noindex, nofollow">
+
+
+
+    <!--build:css /styles/lib.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="/bower_components/angular-material/angular-material.min.css">
+    <!-- endbower -->
+
+    <!--build:css /styles/apps.css -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/.tmp/site.css">
+    <!-- endinject -->
+    <!-- endbuild -->
+    <base href="/">
+</head>
+<body ng-controller="Admin as vm">
+
+<md-toolbar class="flex">
+    <span flex></span>
+    <md-button class="md-primary md-raised no-backdrop" ng-click="vm.logout()">Logga ut</md-button>
+</md-toolbar>
+
+
+<md-content ng-show="!admin" layout="column" class="wide" layout-align="center center" style="height: 100%;">
+    <h1 class="md-title">Du måste logga in för att få tillgång till den här sidan.</h1>
+    <p ng-if="vm.error">{{ vm.error }}</p>
+    <md-input-container style="width: 520px; max-width: 95%;">
+        <label>Användarnamn</label>
+        <input type="text" aria-label="Användarnamn" ng-model="vm.username">
+    </md-input-container>
+
+    <md-input-container style="width: 520px; max-width: 95%;">
+        <label>Lösenord</label>
+        <input type="password" aria-label="Lösenord" ng-model="vm.password">
+    </md-input-container>
+    <md-button aria-label="Login" class="md-primary border-button red"
+        ng-click="vm.login();">Logga in</md-button>
+</md-content>
+
+<div layout="column" layout-align="center center" class="wide" ng-show="admin">
+    <div class="container" layout="row" layout-align="start center" layout-margin layout-padding>
+        <h3 class="md-title"><span class="material-icons" style="top: 3px;">new_releases</span><span layout-margin>Nyheter</span></h3>
+    </div>
+    <div layout="column" layout-gt-sm="row" class="container" layout-align="center start" ng-repeat="article in vm.news">
+        <md-input-container flex>
+            <label>Text</label>
+            <textarea cols="30" rows="10" ng-model="article.text">{{article.text}}</textarea>
+        </md-input-container>
+        <md-button ng-click="vm.updateNews(article.ID, article.text);" class="md-primary md-raised no-backdrop">Spara</md-button>
+        <md-button ng-click="vm.deleteNews(article.ID);" class="md-warn md-raised no-backdrop">Radera</md-button>
+    </div>
+</div>
+
+
+
+<div layout="column" layout-align="center center" class="wide" ng-show="admin">
+    <div class="container" layout="row" layout-align="start center" layout-margin layout-padding>
+        <h3 class="md-title"><span class="material-icons" style="top: 3px;">add</span><span layout-margin>Lägg till nyhet</span></h3>
+    </div>
+    <div layout="column" layout-gt-sm="row" class="container" layout-align="center start">
+        <md-input-container flex>
+            <label>Text</label>
+            <textarea cols="30" rows="10" ng-model="vm.new.text">{{vm.new.text}}</textarea>
+        </md-input-container>
+        <md-button ng-click="vm.addNews(vm.new.text);" class="md-primary md-raised no-backdrop">Spara</md-button>
+    </div>
+</div>
+
+<!-- build:js /js/lib.js -->
+<!-- bower:js -->
+<script src="/bower_components/angular/angular.min.js"></script>
+<script src="/bower_components/angular-route/angular-route.min.js"></script>
+<script src="/bower_components/angular-material/angular-material.min.js"></script>
+<script src="/bower_components/angular-aria/angular-aria.min.js"></script>
+<script src="/bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="/bower_components/angular-messages/angular-messages.min.js"></script>
+<!-- endbower -->
+
+<!-- build:js /js/app.js -->
+<!-- inject:js -->
+<script src="/src/client/admin.module.js"></script>
+<script src="/src/client/http-post-fix.js"></script>
+<script src="/src/client/admin.route.js"></script>
+<script src="/src/client/controllers/Admin.controller.js"></script>
+<script src="/src/client/factory/news.data.js"></script>
+<script src="/src/client/factory/user.data.js"></script>
+
+<!-- endinject -->
+
+<!-- inject:templates:js -->
+<!-- endinject -->
+<!-- endbuild -->
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/sv_SE/sdk.js#xfbml=1&version=v2.6&appId=1495795740726979";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+</body>
+</html>
