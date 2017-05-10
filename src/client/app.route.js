@@ -16,6 +16,13 @@
             .when('/biljetter', {
                 templateUrl: '/partials/biljetter.html'
             })
+            .when('/volontar', {
+                templateUrl: '/partials/volontar.html'
+            })
+            .when('/galleri', {
+                templateUrl: '/partials/gallery.html',
+                controller: 'Gallery as vm'
+            })
             .when('/boende', {
                 templateUrl: '/partials/boende.html'
             });

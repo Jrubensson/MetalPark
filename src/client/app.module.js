@@ -6,6 +6,7 @@
 		'app.route',
 		'app.global',
 		'ngAnimate',
+		'app.gallery',
 		'app.data'
 	])
 	.filter('strLimit', ['$filter', function($filter) {
