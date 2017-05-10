@@ -13,7 +13,7 @@
 		vm.toggleSidebar = toggleSidebar;
 		
 		var availableBackgrounds = [
-			'/src/client/images/carousel/mustasch.jpg',
+			'/src/client/images/carousel/bg.jpg',
 			'/src/client/images/carousel/lillasyster_2.jpg',
 			'/src/client/images/carousel/mustasch_2.jpg',
 			'/src/client/images/carousel/lillasyster.jpg'
@@ -39,7 +39,7 @@
 		
 		
 		function flipBackground() {			
-			flip = $interval(function() {
+			/*flip = $interval(function() {
 					
 				if(showing + 2 > availableBackgrounds.length) {
 					showing = 0;
@@ -47,11 +47,11 @@
 					showing ++;
 				}
 				vm.background = {background: "url(" + availableBackgrounds[showing] + ")"};
-			}, 5000);
+			}, 5000);*/
 			
-			$scope.$on('$destroy', function() {
+			/*$scope.$on('$destroy', function() {
 				$interval.cancel(flip);
-			});
+			});*/
 		}
 		
 		function toggleSidebar() {
