@@ -1,52 +1,77 @@
 <md-content layout="column" layout-align="center center" style="padding: 0 0 60px 0;" class="background-color">
-    
+
     <div class="container" layout="row" layout-align="start center" layout-margin layout-padding ng-show="vm.news.length > 0">
         <h3 class="md-title"><span class="material-icons" style="top: 3px;">new_releases</span><span layout-margin>Nyheter</span></h3>
     </div>
-    <md-content ng-init="limit = 200" ng-repeat="article in vm.news" style="margin: 10px auto;" class="container animate news" layout-padding layout="column" layout-align="start start">
-        <p class="md-body-2">{{ article.text | strLimit: limit }}</p>
+    <md-content ng-repeat="article in vm.news" style="margin: 10px auto;" class="container animate news" layout-padding layout="column" layout-align="start start">
+        <p class="md-body-2">{{ article.text }}</p>
         <div layout="row" class="wide" layout-align="center center">
             <span class="md-caption faded">{{ article.date | limitTo: 16}} | av <strong>Metal Park</strong></span>
             <span flex></span>
-            <md-button href="" ng-click="limit = 9999999" ng-show="article.text.length > limit">Läs mer</md-button>
         </div>
     </md-content>
-    
 
-        
+        <img src="/src/client/images/posters/metalpark.png" alt="Metal park" style="height: auto; width: 570px; max-width: 98%;">
+
+
+
         <p style="margin: 80px 0 20px 0;" class="md-title"><strong>VÅR GRYMMA LINEUP</strong></p>
+
         <div layout="row" layout-wrap layout-align="center center" class="container">
+          <md-content style="position: relative;" flex-gt-md="45" flex="90" layout-margin layout-align="center center" layout="row">
+              <img src="/src/client/images/bands/sparzanza.jpg" alt="SPARZANZA">
+              <p class="md-display-1 artist">SPARZANZA</p>
+          </md-content>
+          <md-content style="position: relative;" flex-gt-md="45" flex="90" layout-margin layout-align="center center" layout="row">
+              <img src="/src/client/images/bands/art_nation.jpg" alt="ART NATION">
+              <p class="md-display-1 artist">ART NATION</p>
+          </md-content>
+          <md-content style="position: relative;" flex-gt-md="45" flex="90" layout-margin layout-align="center center" layout="row">
+              <img src="/src/client/images/bands/eyes_wide_open.jpg" alt="EYES WIDE OPEN">
+              <p class="md-display-1 artist">EYES WIDE OPEN</p>
+          </md-content>
+          <md-content style="position: relative;" flex-gt-md="45" flex="90" layout-margin layout-align="center center" layout="row">
+              <img src="/src/client/images/bands/engel.jpg" alt="ENGEL">
+              <p class="md-display-1 artist">ENGEL</p>
+          </md-content>
+          <md-content style="position: relative;" flex-gt-md="45" flex="90" layout-margin layout-align="center center" layout="row">
+              <img src="/src/client/images/bands/dead_by_april.jpg" alt="DEAD BY APRIL">
+              <p class="md-display-1 artist">DEAD BY APRIL</p>
+          </md-content>
+          <md-content style="position: relative;" flex-gt-md="45" flex="90" layout-margin layout-align="center center" layout="row">
+              <img src="/src/client/images/bands/mile.jpg" alt="MILE">
+              <p class="md-display-1 artist">MILE</p>
+          </md-content>
+          <md-content style="position: relative;" flex-gt-md="45" flex="90" layout-margin layout-align="center center" layout="row">
+              <img src="/src/client/images/bands/skulldrain.jpg" alt="SKULLDRAIN">
+              <p class="md-display-1 artist">SKULLDRAIN</p>
+          </md-content>
             <md-content style="position: relative;" flex-gt-md="45" flex="90" layout-margin layout-align="center center" layout="row">
-                <img src="/src/client/images/bands/corroded.jpg" alt="Lillasyster">
-                <p class="md-display-1 artist">CORRODED</p>
+                <img src="/src/client/images/bands/faustus.jpg" alt="FAUSTUS">
+                <p class="md-display-1 artist">FAUSTUS</p>
             </md-content>
             <md-content style="position: relative;" flex-gt-md="45" flex="90" layout-margin layout-align="center center" layout="row">
-                <img src="/src/client/images/bands/corrosive.jpg" alt="Tad Morose">
+                <img src="/src/client/images/bands/antham.jpg" alt="ANTHAM">
+                <p class="md-display-1 artist">ANTHAM</p>
+            </md-content>
+            <md-content style="position: relative;" flex-gt-md="45" flex="90" layout-margin layout-align="center center" layout="row">
+                <img src="/src/client/images/bands/corrosive.jpg" alt="CORROSIVE">
                 <p class="md-display-1 artist">CORROSIVE</p>
             </md-content>
-            <md-content style="position: relative;" flex-gt-md="45" flex="90" layout-margin layout-align="center center" layout="row">
-                <img src="/src/client/images/bands/amaranthe.jpg" alt="Mustasch">
-                <p class="md-display-1 artist">AMARANTHE</p>
-            </md-content>
-            <md-content style="position: relative;" flex-gt-md="45" flex="90" layout-margin layout-align="center center" layout="row">
-                <img src="/src/client/images/bands/jay_smith.jpg" alt="Hysterica">
-                <p class="md-display-1 artist">JAY SMITH</p>
-            </md-content>
-
-            <h3>Ytterligare band tillkommer</h3>
         </div>
-        
-        
-       
-        
-        
-        
+
+
+
+
+
+
     </div>
 </md-content>
 
 <md-content class="md-whiteframe-z1 tickets-for-sale" layout-padding layout-align="center center" layout="column" layout-gt-sm="row">
-    <h3 class="md-title">Vi ses den 5e augusti!</h3>
+    <h3 class="md-title">Vi ses den 6-7 juli!</h3>
     <md-button class="border-button md-caption white-border"
         aria-label="Boka biljetter"
-        ng-href="http://www.tickster.com/sv/events/v4h2c9z7ryx4hjv/2017-08-05/metal-park-2017">Boka din biljett nu!</md-button>
+        target="_blank"
+        ng-href="https://www.tickster.com/sv/events/d7zcn10fvgl2zry/2018-07-06/metal-park-6-7-juli-2018">Boka din biljett nu!</md-button>
 </md-content>

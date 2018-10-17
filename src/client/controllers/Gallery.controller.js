@@ -5,13 +5,16 @@
 		.module('app.gallery', [])
 		.controller('Gallery', Gallery);
 
-	Gallery.$inject = [];
-	function Gallery() {
+	Gallery.$inject = ['$routeParams'];
+	function Gallery($routeParams) {
 		var vm = this;
 		vm.gallery = [];
 
+    vm.year = $routeParams.year;
+    vm.gallery = [];
+
 		activate();
-		
+
 		////////////////
 
 		function activate() {
@@ -20,11 +23,17 @@
 		}
 
 		function getGallery() {
-			for(var i = 1; i < 46; i++) {
-				vm.gallery.push(i);
-			}
+      if(vm.year === "2016") {
+  			for(var i = 1; i < 46; i++) {
+  				vm.gallery.push(i);
+  			}
+      } else {
+        for(var i = 1; i < 83; i++) {
+  				vm.gallery.push(i);
+  			}
+      }
 		}
-		
+
 
 	}
 })();

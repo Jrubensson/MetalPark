@@ -52,15 +52,26 @@
         <md-button aria-label="Biljetter" ng-href="/biljetter"><strong>BILJETTER</strong></md-button>
         <md-button aria-label="Boende" ng-href="/boende"><strong>BOENDE</strong></md-button>
         <md-button aria-label="Volontär" ng-href="/volontar"><strong>VOLONTÄR</strong></md-button>
-        <md-button aria-label="Galleri" ng-href="/galleri"><strong>METAL PARK 2016</strong></md-button>
+        <md-menu md-position-mode="target-right target">
+          <md-button aria-label="Galleri" ng-click="$mdOpenMenu($event);">
+            <strong>GALLERI</strong>
+          </md-button>
+          <md-menu-content width="4">
+            <md-menu-item ng-repeat="item in [2016, 2017]">
+              <md-button ng-href="{{'/galleri/' + item}}">
+                {{ ::item }}
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+
     </nav>
     <span hide-gt-sm layout-margin style="margin: 20px auto;"></span>
     <p class="white" style="margin-top: 50px;">IDROTTSPARKEN PRESENTERAR</p>
     <img src="/src/client/images/logotype.png" class="header-logotype" alt="Metal park">
-    <p class="white">5 Augusti 2017</p>
-    <md-button class="border-button md-caption blue"
-               aria-label="Boka biljetter"
-               ng-href="http://www.tickster.com/sv/events/v4h2c9z7ryx4hjv/2017-08-05/metal-park-2017">Köp biljett nu</md-button>
+    <p class="white">6-7 JULI 2018</p>
+    <md-button class="border-button md-caption blue" href="https://www.tickster.com/sv/events/d7zcn10fvgl2zry/2018-07-06/metal-park-6-7-juli-2018" target="_blank"
+               aria-label="Boka biljetter">Köp din biljett nu</md-button>
 </header>
 
 <div class="angle-wrapper">

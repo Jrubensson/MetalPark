@@ -1,3 +1,7 @@
 <md-content layout-margin layout-padding class="container home gallery" layout="column" layout-align="center center" style="margin-top: 50px;">
-	<img ng-src="/src/client/images/gallery2016/{{gallery}}.jpg" alt="" ng-repeat="gallery in vm.gallery">
+  <h1 class="layout-padding center-align">METAL PARK {{vm.year}}</h1>
+  <div ng-if="vm.year == 2017">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/ehLFoBXqTKk?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </div>
+	<img ng-src="http://metalpark.se/src/client/images/archive/{{vm.year}}/{{gallery}}.jpg" alt="" ng-repeat="gallery in vm.gallery">
 </md-content>
